@@ -1,7 +1,7 @@
 const bookModel = require('../models/books')
 const logger = require('../logging/logger')
 
-
+// get all books
 function getAllBooks(req, res) {
     bookModel.find()
         .then(books => {
@@ -13,6 +13,7 @@ function getAllBooks(req, res) {
         })
 }
 
+// get book by ID
 function getBooksByID (req, res) {
     const id = req.params.id
     bookModel.findById(id)
@@ -24,6 +25,7 @@ function getBooksByID (req, res) {
         })
 }
 
+// add book
 function addBook (req, res) {
     const book = req.body
     book.lastUpdateAt = new Date() // set the lastUpdateAt to the current date
@@ -36,6 +38,7 @@ function addBook (req, res) {
         })
 }
 
+// update book by ID
 function updateBookByID (req, res) {
     const id = req.params.id
     const book = req.body
@@ -49,11 +52,15 @@ function updateBookByID (req, res) {
         })
 }
 
+// delete book by ID
 function deleteBookByID (req, res) {
     const id = req.params.id
     bookModel.findByIdAndRemove(id)
         .then(book => {
-            res.status(200).send(book)
+            return res.status(200).send({
+                message:'Book successfully deleted',
+                data: book
+            })
         }).catch(err => {
             logger.error(err)
             res.status(500).send(err)
