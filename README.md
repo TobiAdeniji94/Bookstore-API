@@ -4,8 +4,10 @@ This is an api for a bookstore app
 ## Setup
 * Install Nodejs, mongoDB
 * Pull this repo
-* Update env with .env
-* run ``` npm run start ```
+* Update .env with environment variables
+* Run
+* Run ``` npm run start ``` to lest locally
+* API routes are protected. To access either routes, sign up with email.
 
 
 # Models
